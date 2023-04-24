@@ -2,6 +2,14 @@ import { useState, useEffect } from "react";
 import { copy, linkIcon, loader, tick } from "../assets";
 
 const Demo = () => {
+const [article, setArticle] = useState({
+  url:'',
+  summery :'',
+})
+
+const handleSubmit = () => {
+  alert("clicked")
+}
   return (
     <section className="mt-16 w-full max-w-xl">
       {/* search */}
@@ -12,7 +20,7 @@ const Demo = () => {
         <form
           className="relative flex 
         justify-center items-center"
-          onSubmit={() => {}}
+          onSubmit={handleSubmit}
         >
           <img
             src={linkIcon}
@@ -23,7 +31,10 @@ const Demo = () => {
           <input
             type="url"
             placeholder="Enter a URL"
-            onChange={() => {}}
+            value={article.url}
+            onChange={(e) => setArticle({
+              ...article,url: e.target.value
+            })}
             required
             className="url_input peer"
           />
@@ -36,7 +47,9 @@ const Demo = () => {
             ✔
           </button>
         </form>
+        {/*Browser URL History*/}
       </div>
+      {/*Display results*/}
     </section>
   );
 };
