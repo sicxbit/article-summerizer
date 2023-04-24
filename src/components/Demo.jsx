@@ -1,14 +1,26 @@
 import { useState, useEffect } from "react";
 import { copy, linkIcon, loader, tick } from "../assets";
 
+import { useLazyGetSummeryQuery } from "../services/article";
+
 const Demo = () => {
 const [article, setArticle] = useState({
   url:'',
   summery :'',
 })
+const [getSummery,{error, isFetching}] = useLazyGetSummeryQuery()
 
-const handleSubmit = () => {
-  alert("clicked")
+const handleSubmit = async (e) => {
+  e.preventDefault()
+
+  const {data} = await getSummery({articleUrl: article.url})
+  
+  if (data?.summery) {
+    const newArticle = {...article , summery: data.summery}
+    setArticle(newArticle)
+
+    console.log(newArticle)
+  }
 }
   return (
     <section className="mt-16 w-full max-w-xl">
