@@ -16,7 +16,7 @@ const Hero = () => {
           onClick={() => {
             window.open(`https://gitlab.com/arunjith.official/summerizer`);
           }}
-          className="black_btn"
+          className="gitlab_btn"
         >
           Gitlab
         </button>
